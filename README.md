@@ -1,5 +1,5 @@
 # RobertVmAPI
-Python API created using FASTAPI and Azure CLI , with the end-goal to facilitate the easier provisioning and deprovisioning of vms within Azure.
+Python API created using FASTAPI and Azure CLI , with the end-goal to facilitate the easier provisioning and deprovisioning of vms within Azure, while also keeping track and auditing all of the actions performed on the cloud via the API, through SQLLite.
 
 
 ## POST example
