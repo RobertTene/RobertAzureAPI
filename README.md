@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # RobertVmAPI
 Python API created using FASTAPI and Azure CLI , with the end-goal to facilitate the easier provisioning and deprovisioning of vms within Azure.
 
@@ -39,3 +40,7 @@ Python API created using FASTAPI and Azure CLI , with the end-goal to facilitate
 #     );
 # ''')
 ```
+=======
+# RobertAzureAPI
+API for managing azure resources.
+>>>>>>> c3b990d20d8d80646a8c5fa9977f52fcbf2122a1
