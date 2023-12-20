@@ -2,8 +2,12 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import router as api_router
+from database import create_db
 
 app = FastAPI()
+
+# Call the function to create the database and tables
+create_db()
 
 # CORS configuration
 app.add_middleware(

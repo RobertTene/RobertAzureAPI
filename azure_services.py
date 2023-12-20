@@ -8,7 +8,7 @@ from azure.mgmt.resource import ResourceManagementClient
 
 # Azure Client configuration
 credential = AzureCliCredential()
-subscription_id = "ac3dc866-d03b-4791-9510-9e9ae69b0b12"  # Use environment variables
+subscription_id = "ea0ab0bd-6f71-4b45-822b-6626ba8ba20e"  # My current active subscription. Replace this with your subscription ID from Azure.
 resource_client = ResourceManagementClient(credential, subscription_id)
 compute_client = ComputeManagementClient(credential, subscription_id)
 network_client = NetworkManagementClient(credential, subscription_id)

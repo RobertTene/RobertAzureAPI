@@ -3,6 +3,8 @@ from typing import Annotated
 from database import get_db_connection, create_db
 import azure_services
 from models import Order
+from models import User
+
 
 router = APIRouter()
 
@@ -10,6 +12,17 @@ router = APIRouter()
 def read_root():
     return {"Hello": "World"}
 
+@router.post("/create-user")
+async def create_user(user: User):
+    conn = get_db_connection()
+    try:
+        # Function to insert user into the database (to be defined in database.py)
+        insert_user_into_db(conn, user)
+        return {"message": "User created successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
 
 @router.get("/status/{id}")
 async def status(id: int):
@@ -25,6 +38,24 @@ async def status(id: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@router.get("/orders")
+async def get_orders():
+    try:
+        with get_db_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM orders")
+            orders = cursor.fetchall()
+            return [{
+                'id': order[0],
+                'vm_name': order[1],
+                'rg_name': order[2],
+                'location': order[3],
+                'user_id': order[4],
+                'recipient_id': order[5],
+                'status': order[6]
+            } for order in orders]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/makedb")
 def makedb():

@@ -1,0 +1,9 @@
+# This "requirements.txt" file lists all dependencies used in this Project
+
+fastapi
+uvicorn
+azure-identity
+azure-mgmt-compute
+azure-mgmt-network
+azure-mgmt-resource
+pydantic

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VM Provisioning</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Order a VM</a></li>
+            <li><a href="orders.html">Orders Page</a></li>
+        </ul>
+    </nav>
+
+    <form id="provisionForm">
+        <input type="text" id="vm_name" name="vm_name" placeholder="VM Name">
+        <input type="text" id="resource_group" name="resource_group" placeholder="Resource Group">
+        <input type="text" id="location" name="location" placeholder="Location">
+        <input type="number" id="user_id" name="user_id" placeholder="User ID">
+        <input type="number" id="recipient_id" name="recipient_id" placeholder="Recipient ID">
+        <button type="submit">PROVISION</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
