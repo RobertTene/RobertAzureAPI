@@ -38,3 +38,6 @@ node app.js
 
 ### 7) Final step: Demo the web app at http://localhost:3000
 
+Once you access it, it should look like below:
+
+![alt text]([https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png](https://github.com/RobertTene/RobertAzureAPI/blob/main/media/VM%20Project.png)https://github.com/RobertTene/RobertAzureAPI/blob/main/media/VM%20Project.png "Main Page RobertAPI")
