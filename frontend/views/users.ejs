@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users List</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <%- include('navbar') %> <!-- Include the navbar -->
+
+    <div class="container mt-4">
+        <h1>Users</h1>
+        <div class="row">
+            <!-- User List -->
+            <div class="col-md-6">
+                <div class="list-group" id="userList">
+                    <% users.forEach(function(user) { %>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <%= user.firstName %> <%= user.lastName %>
+                        </a>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- User Detail -->
+            <div class="col-md-6">
+                <div id="userDetail">
+                    <h3>User Details</h3>
+                    <div id="userDetailContent">
+                        <!-- User details will be populated here -->
+                        <p>Select a user to view details.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/users.js"></script>
+</body>
+</html>
