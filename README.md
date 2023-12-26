@@ -1,6 +1,11 @@
 # RobertVmAPI
-Python API created using FASTAPI and Azure CLI , with the end-goal to facilitate the easier provisioning and deprovisioning of vms within Azure.
-Written in Python, HTML, Javascript and SQLite.
+
+The RobertVmAPI is a Python API created using FASTAPI and Azure CLI , with the end-goal to facilitate the easier provisioning and deprovisioning of vms within Azure.
+It is mianly written in Python, NodeJS and SQLite.
+
+With it, users can provision virtual machines within Azure. The VMs can also be deprovisioned accordingly within the API.
+It is also using SQLite and every VM order is tracked in the orders.db database.
+This is all displayed in a readable and intuitive front-end, developed via Node JS.
 
 # How to set this up
 ### 1) Run this in Git Bash to clone the repository locally
