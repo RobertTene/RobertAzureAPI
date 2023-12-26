@@ -1,40 +1,81 @@
+<!-- users.ejs -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Users List</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Page</title>
+    <!-- Include Bootstrap CSS (you can use a CDN or link to your local Bootstrap CSS file) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <%- include('navbar') %> <!-- Include the navbar -->
+    <!-- Navigation Bar (you can include it separately if needed) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Users</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/users">Users Page</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="container mt-4">
-        <h1>Users</h1>
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
         <div class="row">
-            <!-- User List -->
-            <div class="col-md-6">
-                <div class="list-group" id="userList">
-                    <% users.forEach(function(user) { %>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <%= user.firstName %> <%= user.lastName %>
-                        </a>
+            <!-- Left column: List of users -->
+            <div class="col-md-4">
+                <h2>List of Users</h2>
+                <ul class="list-group" id="userList">
+                    <% users.forEach(user => { %>
+                        <li class="list-group-item" onclick="showUserDetails(<%= JSON.stringify(user) %>)">
+                            <%= user.first_name %> <%= user.last_name %>
+                        </li>
                     <% }); %>
-                </div>
+                </ul>
             </div>
-
-            <!-- User Detail -->
-            <div class="col-md-6">
-                <div id="userDetail">
-                    <h3>User Details</h3>
-                    <div id="userDetailContent">
-                        <!-- User details will be populated here -->
-                        <p>Select a user to view details.</p>
-                    </div>
+            <!-- Right column: Display full user information -->
+            <div class="col-md-8">
+                <h2>User Details</h2>
+                <div id="userDetails">
+                    <!-- User details will be populated here when a user is clicked -->
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="/js/users.js"></script>
+    <!-- Include Bootstrap JS (you can use a CDN or link to your local Bootstrap JS file) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for user selection and details display -->
+    <script>
+        // Function to display user details when a user is clicked
+        function showUserDetails(user) {
+            const userDetails = document.getElementById('userDetails');
+
+            // Create a card to display user details
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+                <div class="card-body">
+                    <h5 class="card-title">${user.first_name} ${user.last_name}</h5>
+                    <p class="card-text">Username: ${user.username}</p>
+                    <p class="card-text">ID: ${user.id}</p>
+                </div>
+            `;
+
+            // Clear previous details and display the new user details
+            userDetails.innerHTML = '';
+            userDetails.appendChild(card);
+        }
+    </script>
 </body>
 </html>

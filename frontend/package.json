@@ -1,6 +1,6 @@
 {
   "name": "RobertAzureAPI",
-  "type": "module",
+  "type": "commonjs",
   "version": "1.0.0",
   "description": "<<<<<<< HEAD\r # RobertVmAPI\r Python API created using FASTAPI and Azure CLI , with the end-goal to facilitate the easier provisioning and deprovisioning of vms within Azure.",
   "main": "index.js",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/RobertTene/RobertAzureAPI#readme",
   "dependencies": {
     "axios": "^1.6.2",
+    "bootstrap": "^5.3.2",
     "ejs": "^3.1.9",
     "express": "^4.18.2"
   }
