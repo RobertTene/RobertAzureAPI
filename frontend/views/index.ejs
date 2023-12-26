@@ -1,15 +1,39 @@
-<!-- index.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order a VM</title>
-
+    <title>RobertAzureAPI</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS -->
+        <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Navigation Bar (you can include it separately if needed) -->
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .content-wrapper {
+            flex-grow: 1;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+        .nav-item.active .nav-link {
+            background-color: green; /* Background color for active link */
+            color: white !important; /* White text for better visibility */
+        }
+    </style>
+
+    <div class="site-wrapper">
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">Order a VM</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -17,9 +41,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav w-100">
                 <li class="nav-item">
-                    <a class="nav-link" href="orders.html">Orders Page</a>
+                    <a class="nav-link" href="/orders">Orders Page</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/users">Users Page</a>
@@ -29,11 +53,94 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="container mt-4">
-        <h1>Welcome to the VM Ordering Service</h1>
-        <p>This is the index page of our VM provisioning service. You can use this page to order virtual machines.</p>
-        <!-- Add your content here -->
-    </div>
 
+    <div class="content-wrapper container mt-4">
+        <h1>Hi there! Welcome to the Robert's VM Ordering Service</h1>
+        <p>This is the main page for the VM ordering service, using RobertAzureAPI. You can use this page to order virtual machines.</p>
+
+        <!-- Greetings page, "how do I use this" section -->
+        <div class="info-section">
+            <h3>How do I use this?</h3>
+            <p>Using this web application is simple. Start by navigating to the 'Orders Page' to create a new virtual machine order. Provide the necessary details, and submit your order. ) You can check the status of your orders on the same page. To view and manage users, navigate to the 'Users Page'. NOTE: Please pay close attention to the Resource Group name, Location name, User ID and Recipient ID (you can only only use user id and recipient ids from already existing users. currently there are only 5 users , 1-5 IDs, which you can use.</p>
+        </div>
+
+        <!-- Greetings page, "what is the goal of this web app" section -->
+        <div class="info-section">
+            <h3>What is the goal of this web app?</h3>
+            <p>The goal of this web application is to provide a user-friendly interface for ordering and managing virtual machines in Azure. It streamlines the process of provisioning and managing VMs, making it accessible for users without deep technical knowledge of Azure's backend systems.</p>
+        </div>
+
+        <!-- FORMS USED TO INPUT FOR THE PROVISIONING OF A NEW VM-->
+    </div>
+    <div class="content-wrapper mt-4 container">
+    <h3>Provision a Virtual Machine</h3>
+    <form id="provisionForm">
+        <div class="form-group">
+            <label for="vmName">VM Name:</label>
+            <input type="text" class="form-control" id="vmName" name="vmName" required>
+        </div>
+        <div class="form-group">
+            <label for="resourceGroup">Resource Group:</label>
+            <input type="text" class="form-control" id="resourceGroup" name="resourceGroup" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" class="form-control" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+            <label for="userId">User ID:</label>
+            <input type="text" class="form-control" id="userId" name="userId" required>
+        </div>
+        <div class="form-group">
+            <label for="recipientId">Recipient ID:</label>
+            <input type="text" class="form-control" id="recipientId" name="recipientId" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="provisionVM()">PROVISION VM</button>
+    </form>
+</div>
+
+<script>
+    function provisionVM() {
+        const vmName = document.getElementById('vmName').value;
+        const resourceGroup = document.getElementById('resourceGroup').value;
+        const location = document.getElementById('location').value;
+        const userId = document.getElementById('userId').value;
+        const recipientId = document.getElementById('recipientId').value;
+
+        const orderData = {
+            vmName: vmName,
+            resourceGroup: resourceGroup,
+            location: location,
+            userId: userId,
+            recipientId: recipientId
+        };
+
+        // Send a POST request with JSON data
+        fetch('/provision-vm', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response data (e.g., show a success message)
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle errors
+            console.error(error);
+        });
+    }
+</script>
+  <footer class="text-center mt-4 py-2" style="background-color: #f8f9fa;">
+        <p>Developed by Robert Tene. For more info, please visit <a href="https://github.com/RobertTene/RobertAzureAPI" target="_blank">https://github.com/RobertTene/RobertAzureAPI</a></p>
+  </footer>
+</div>
+    <!-- Bootstrap JS and dependencies. just in case -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

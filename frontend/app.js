@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 app.get('/users', async (req, res) => {
     try {
-        const usersApiUrl = 'http://localhost:8080/users';
+        const usersApiUrl = 'http://localhost:8000/users';
         const response = await axios.get(usersApiUrl);
         const users = response.data;
 
@@ -38,6 +38,21 @@ app.post('/provision-vm', async (req, res) => {
     } catch (error) {
         console.error('Error in provisioning VM:', error);
         res.status(500).send('Error in provisioning VM');
+    }
+});
+
+app.get('/orders', async (req, res) => {
+    try {
+        // Replace 'http://localhost:8000/orders' with the actual URL of your FastAPI server
+        const ordersApiUrl = 'http://localhost:8000/orders';
+        const response = await axios.get(ordersApiUrl);
+        const orders = response.data;
+
+        // Render the orders page with the fetched data
+        res.render('orders', { orders });
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).send('Error fetching orders');
     }
 });
 

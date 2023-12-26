@@ -4,6 +4,7 @@ from database import get_db_connection, create_db
 import azure_services
 from models import Order
 from models import User
+from typing import List, Annotated
 
 
 router = APIRouter()
@@ -23,6 +24,23 @@ async def create_user(user: User):
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         conn.close()
+@router.get("/users", response_model=List[User])
+async def get_users():
+    try:
+        with get_db_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM users")
+            users = cursor.fetchall()
+            return [{
+                'id': user[0],
+                'username': user[1],
+                'first_name': user[2],
+                'last_name': user[3]
+            } for user in users]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 
 @router.get("/status/{id}")
 async def status(id: int):

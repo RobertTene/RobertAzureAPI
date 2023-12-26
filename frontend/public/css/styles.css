@@ -1,2 +1,42 @@
 /* Import Bootstrap styles */
 @import '~bootstrap/dist/css/bootstrap.css';
+<style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .site-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .content-wrapper {
+            flex-grow: 1;
+        }
+        .nav-item {
+            width: 50%; /* Each item takes half of the width */
+        }
+        .nav-link {
+            color: blue !important; /* Blue text for links */
+            font-size: 1.2em; /* Larger text size */
+        }
+        .nav-link:hover, .nav-link:focus {
+            color: darkblue !important; /* Color changes on hover */
+            text-decoration: none; /* Removes underline on hover */
+        }
+        .info-section {
+            margin-top: 2em;
+            padding: 1em;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .info-section h3 {
+            color: #007bff;
+        }
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 1em 0;
+        }
+    </style>

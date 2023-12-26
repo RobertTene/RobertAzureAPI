@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VM Orders</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!--  CSS -->
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Use viewport height */
+        }
+        .content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .footer {
+            flex-shrink: 0;
+            margin-top: auto; /* Pushes the footer to the bottom */
+        }
+        .table-responsive {
+            overflow: auto; /* Enables scrolling within the table if needed */
+        }
+        .nav-item.active .nav-link {
+            background-color: green; /* Background color for active link */
+            color: white !important; /* White text for better visibility */
+        }
+    </style>
+    </style>
+</head>
+<body>
+   <div class="content-wrapper">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Order a VM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/orders">Orders Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users">Users Page</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <h1>VM Orders</h1>
+        <p>Here you can view and manage all your virtual machine orders.</p>
+
+        <!-- Orders Table -->
+         <div class="container mt-4">
+           <div class="table-responsive">
+               <table class="table table-bordered table-hover">
+                   <thead>
+                       <tr>
+                           <th>ID</th>
+                           <th>VM Name</th>
+                           <th>Resource Group</th>
+                           <th>Location</th>
+                           <th>User ID</th>
+                           <th>Recipient ID</th>
+                           <th>Status</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <% orders.forEach(function(order) { %>
+                           <tr>
+                               <td><%= order.id %></td>
+                               <td><%= order.vm_name %></td>
+                               <td><%= order.rg_name %></td>
+                               <td><%= order.location %></td>
+                               <td><%= order.user_id %></td>
+                               <td><%= order.recipient_id %></td>
+                               <td><%= order.status %></td>
+                           </tr>
+                       <% }); %>
+                   </tbody>
+               </table>
+           </div>
+           </div>
+       </div>
+   </div>
+
+   <!-- Footer -->
+   <footer class="text-center mt-4 py-2" style="background-color: #f8f9fa;">
+       <p>Developed by Robert Tene. For more info, please visit <a href="https://github.com/RobertTene/RobertAzureAPI" target="_blank">https://github.com/RobertTene/RobertAzureAPI</a></p>
+   </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

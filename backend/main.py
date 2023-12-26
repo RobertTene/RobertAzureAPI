@@ -12,9 +12,9 @@ create_db()
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust as necessary
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Adjust as necessary
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
